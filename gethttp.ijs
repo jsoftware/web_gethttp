@@ -30,12 +30,13 @@ coclass 'wgethttp'
     HTTPCMD=: 'curl'
   case. do.   NB. Linux
     try.
-      2!:0'which wget 2>/dev/null'
-      IFWGET=: 1 [ HTTPCMD=: 'wget' catch. end.
-    if. -.IFWGET do.
-    try.
       2!:0'which curl 2>/dev/null'
-      HTTPCMD=: 'curl' catch. end.
+      HTTPCMD=: 'curl'
+    catch.
+      try.
+        2!:0'which wget 2>/dev/null'
+        IFWGET=: 1 [ HTTPCMD=: 'wget'
+      catch. end.
     end.
   end.
   if. IFUNIX do.   NB. fix task.ijs definition of spawn on mac/unix
@@ -147,7 +148,8 @@ gethttp=: 3 : 0
     if. 2 131072 262144 e.~ 3!:0 x do. opts=. utf8 x
     else. 'Invalid left argument for getHTTP' return. end.
   end.
-  opts=. ' ',opts,' '
+  NB. curl: follow redirects (wget does by default); wget: decompress transport-level gzip (curl does by default)
+  opts=. ' ',opts,IFWGET{:: ' -L ';' --compression=auto '
   spawn HTTPCMD , opts , url
 )
 
