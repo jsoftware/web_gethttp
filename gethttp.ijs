@@ -40,8 +40,10 @@ coclass 'wgethttp'
     end.
   end.
   if. IFUNIX do.   NB. fix task.ijs definition of spawn on mac/unix
+    quot=: '"','"',~rplc&(,(];'\',])"0'\$"')
     spawn=: [: 2!:0 '(' , ' || true)' ,~ ]
   else.
+    quot=: ]
     spawn=: spawn_jtask_
   end.
   ''
@@ -150,7 +152,7 @@ gethttp=: 3 : 0
   end.
   NB. curl: follow redirects (wget does by default); wget: decompress transport-level gzip (curl does by default)
   opts=. ' ',opts,IFWGET{:: ' -L ';' --compression=auto '
-  spawn HTTPCMD , opts , url
+  spawn HTTPCMD , opts , quot url
 )
 
 NB. =========================================================
