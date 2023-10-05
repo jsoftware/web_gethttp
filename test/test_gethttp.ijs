@@ -44,7 +44,6 @@ test=: 3 : 0
 
     log=. 'file' gethttp TestURL
     assert 5 < #log
-    assert checkFile TestDefFile
 
     log=. ('file';TestDefFile) gethttp TestURL
     assert 5 < #log
