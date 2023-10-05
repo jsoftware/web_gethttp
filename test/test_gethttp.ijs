@@ -39,14 +39,14 @@ test=: 3 : 0
     URLcnt=: gethttp TestURL
     assert 2000 < #URLcnt
     assert +./ 'Wiki' E. URLcnt
-    
+
     assert URLcnt -: 'stdout' gethttp TestURL
 
     log=. 'file' gethttp TestURL
     assert 5 < #log
     assert checkFile TestDefFile
 
-    log=. ('file';'') gethttp TestURL
+    log=. ('file';TestDefFile) gethttp TestURL
     assert 5 < #log
     assert checkFile TestDefFile
 

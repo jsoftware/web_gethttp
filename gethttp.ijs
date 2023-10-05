@@ -72,7 +72,7 @@ urlquery=: 3 : 0
   if. 0 e. $y do. '' return. end.
   'arg should be boxed' assert 32 = 3!:0 y
   'arg should be rank 1 or 2' assert 1 2 e.~ rnk=. #$y
-  if. rnk = 1 do. 
+  if. rnk = 1 do.
     'arg should be name-value pairs' assert 0 = 2|#y
     y=. _2]\ y
   else. 'arg should only have 2 cols' assert 2 = {:$y end.
@@ -137,7 +137,7 @@ gethttp=: 3 : 0
   select. jopts
   case. 'stdout' do.  NB. content retrieved from stdout, log suppressed
     opts=. IFWGET{:: '-o - -s -S';'-O - -q'
-  case. 'file' do. 
+  case. 'file' do.
     if. #fnme do.     NB. save as filename
       opts=. IFWGET{:: '--stderr - -o ';'-O '
       opts=. opts,fnme
