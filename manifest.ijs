@@ -13,7 +13,7 @@ You could get a more recent cert file from
 https://curl.haxx.se/docs/caextract.html
 )
 
-VERSION=: '1.1.3'
+VERSION=: '1.1.4'
 
 RELEASE=: ''
 

@@ -22,6 +22,8 @@ coclass 'wgethttp'
   case. 'Win' do.
     if. fexist f=. jpath '~addons/web/gethttp/bin/curl.exe' do.
       HTTPCMD=: f
+    elseif. 1=ftype f=. (2!:5'SystemRoot'),'\System32\curl.exe' NB. inside C:\Windows\System32 for windows 10 or newer
+      HTTPCMD=: f
     elseif. fexist f=. jpath '~tools/ftp/wget.exe' do.
       IFWGET=: 1
       HTTPCMD=: f
