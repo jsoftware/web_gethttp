@@ -13,7 +13,7 @@ You could get a more recent cert file from
 https://curl.haxx.se/docs/caextract.html
 )
 
-VERSION=: '1.1.5'
+VERSION=: '1.1.6'
 
 RELEASE=: ''
 
@@ -30,5 +30,5 @@ test/test_gethttp.ijs
 
 FILESWIN=: 0 : 0
 bin/curl.exe
-bin/ca-bundle.crt
+bin/curl-ca-bundle.crt
 )
